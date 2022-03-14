@@ -2,11 +2,8 @@ package routes
 
 import (
 	"net/http"
-    "math/rand"
 	"github.com/gin-gonic/gin"
-    "github.com/marcel-baur/wrdl/res"
-    "github.com/marcel-baur/wrdl/utils"
-
+	"github.com/marcel-baur/wrdl/logic"
 )
 
 type NewGame struct {
@@ -27,14 +24,7 @@ func CreateGameCaller(c *gin.Context) {
         c.JSON(http.StatusBadRequest, gin.H{"error": "Not more than seven letters allowed"})
         return
     }
-    word := FetchWord(request.Letters)
-    c.JSON(http.StatusOK, gin.H{"word": word})
+    game := logic.CreateGame(request.Letters)
+    c.JSON(http.StatusOK, gin.H{"game": game})
 }
 
-func FetchWord(l int) string {
-    filtered := utils.Filter(res.EnglishWords, func(word string) bool {
-        return len(word) == l
-    })
-    index := rand.Intn(len(filtered))
-    return filtered[index]
-}
