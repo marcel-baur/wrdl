@@ -25,6 +25,6 @@ func CreateGameCaller(c *gin.Context) {
         return
     }
     game := logic.CreateGame(request.Letters)
-    c.JSON(http.StatusOK, gin.H{"game": game})
+    c.JSON(http.StatusOK, gin.H{"id": game.Hash})
 }
 
