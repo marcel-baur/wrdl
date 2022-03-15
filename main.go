@@ -7,6 +7,7 @@ import (
     "bufio"
 	"github.com/marcel-baur/wrdl/routes"
     "github.com/marcel-baur/wrdl/res"
+    "github.com/marcel-baur/wrdl/logic"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +18,7 @@ func main() {
     gin.ForceConsoleColor()
     fmt.Printf("Loading words...")
     LoadWords()
+    logic.GMap = make(logic.GameMap)
     fmt.Printf("Words loaded! %d words in list.", len(res.EnglishWords))
     r := gin.Default()
     r.POST("/new", routes.CreateGameCaller)

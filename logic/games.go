@@ -5,6 +5,9 @@ import (
     "github.com/marcel-baur/wrdl/res"
 )
 
+type GameMap map[uuid.UUID]*Game
+var GMap GameMap
+
 type Game struct {
     Solution string
     Attempts []string
@@ -16,5 +19,6 @@ func CreateGame(len int) *Game {
     game := new(Game)
     game.Solution = solution
     game.Hash = uuid.New()
+    GMap[game.Hash] = game
     return game
 }
