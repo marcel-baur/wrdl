@@ -11,8 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
-
 func main() {
     fmt.Printf("Starting server on port 8080")
     gin.ForceConsoleColor()
