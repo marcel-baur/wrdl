@@ -28,5 +28,9 @@ func PostSolutionCaller(c *gin.Context) {
 	if len(request.Word) != len(game.Solution) {
 		err_string := fmt.Sprintf("The proposed solution must have length %d", len(game.Solution))
 		c.JSON(http.StatusBadRequest, gin.H{ERROR_RESPONSE_KEY: err_string})
+        return
 	}
+    result := logic.CheckSolution(request.Word, game)
+    game.Attempts = append(game.Attempts, request.Word)
+    c.JSON(http.StatusOK, gin.H{"result": result})
 }

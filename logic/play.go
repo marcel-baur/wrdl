@@ -8,7 +8,7 @@ const (
 	YELLOW LetterState = "yellow"
 )
 
-func CheckSolution(word string, game Game) []LetterState {
+func CheckSolution(word string, game *Game) []LetterState {
 	var result []LetterState
 	if word == game.Solution {
 		for _, _ = range word {
