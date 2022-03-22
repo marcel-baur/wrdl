@@ -26,7 +26,6 @@ func main() {
 
 func LoadWords() {
 	f, err := os.Open("res/words.txt")
-
 	if err != nil {
 		log.Fatal(err)
 	}
