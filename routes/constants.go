@@ -1,3 +1,3 @@
 package routes
 
-const ERROR_KEY string = "error"
+const ERROR_RESPONSE_KEY string = "error"
