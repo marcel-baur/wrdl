@@ -30,6 +30,10 @@ func PostSolutionCaller(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{ERROR_RESPONSE_KEY: err_string})
         return
 	}
+    if len(game.Attempts) > 6 {
+        c.JSON(http.StatusOK, gin.H{"correct_solution": game.Solution})
+        return
+    }
     result := logic.CheckSolution(request.Word, game)
     game.Attempts = append(game.Attempts, request.Word)
     c.JSON(http.StatusOK, gin.H{"result": result})
